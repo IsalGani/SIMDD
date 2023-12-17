@@ -44,7 +44,7 @@
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
-  <link rel="stylesheet" href="public/css/new.css">
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -70,8 +70,7 @@
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/fullcalendar.min.js"></script>
   <script src="../assets/js/plugins/chartjs.min.js"></script>
-  <script type="text/javascript" src="/public/js/new.js">   
-        </script>
+
 
 
   @stack('dashboard')
