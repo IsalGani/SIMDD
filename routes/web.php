@@ -12,6 +12,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\ChangePasswordController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
