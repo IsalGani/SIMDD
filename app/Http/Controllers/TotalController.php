@@ -74,39 +74,38 @@ class TotalController extends Controller
         return view('totals.show', compact('total'));
     }
 
-
     public function edit($id)
     {
-        $user = Auth::user();
-        $total = Total::where('nama_desa', $user->name)->findOrFail($id);
+        $total = Total::findOrFail($id);
 
+        // Kembalikan view untuk form edit dengan data total yang akan diedit
         return view('totals.edit', compact('total'));
     }
 
+
     public function update(Request $request, $id)
     {
-        try {
-            $request->validate([
-                'tahun_anggaran' => 'required|integer|unique:totals,tahun_anggaran,' . $id . ',id,nama_desa,' . Auth::user()->name,
-                'total_realisasi' => 'required|numeric',
-                'total_anggaran' => 'required|numeric',
-            ], [
-                'tahun_anggaran.unique' => 'Data untuk tahun tersebut sudah ada.',
-            ]);
+        // Validasi data yang diterima dari form edit
+        $request->validate([
+            'tahun_anggaran' => 'required|integer',
+            'total_realisasi' => 'required|numeric',
+            'total_anggaran' => 'required|numeric',
+            // Tambahkan aturan validasi lainnya sesuai kebutuhan
+        ]);
 
-            $user = Auth::user();
+        // Temukan data total berdasarkan ID
+        $total = Total::findOrFail($id);
 
-            $request->merge([
-                'nama_desa' => $user->name,
-            ]);
+        // Perbarui data total dengan data yang diterima dari form edit
+        $total->update([
+            'tahun_anggaran' => $request->input('tahun_anggaran'),
+            'total_realisasi' => $request->input('total_realisasi'),
+            'total_anggaran' => $request->input('total_anggaran'),
+            // Perbarui dengan aturan validasi lainnya
+        ]);
 
-            $total = Total::findOrFail($id);
-            $total->update($request->all());
-
-            return redirect()->route('totals.index')->with('success', 'Data berhasil diperbarui!');
-        } catch (ValidationException $e) {
-            return redirect()->route('totals.edit', $id)->withErrors($e->errors())->withInput();
-        }
+        // Kembalikan ke halaman yang sesuai atau berikan pesan sukses
+        return redirect()->route('totals.index')->with('success', 'Data Total berhasil diperbarui!');
     }
 
     public function destroy($id)

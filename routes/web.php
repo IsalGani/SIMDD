@@ -37,13 +37,6 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('berkas');
 	})->name('berkas');
 
-	Route::get('profile', function () {
-		return view('profile');
-	})->name('profile');
-
-
-
-
 	Route::get('/totals/index', function () {
 		return view('/totals/index');
 	})->name('/totals/index');
@@ -87,6 +80,8 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::resource('totals', TotalController::class);
+
+Route::get('totals/{id}/edit', 'TotalController@edit')->name('totals.edit');
 
 Route::resource('rincian', RincianController::class);
 

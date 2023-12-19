@@ -1,4 +1,4 @@
-<footer class="footer pt-3  ">
+<footer class="footer pt-3">
     <div class="container-fluid">
         <div class="row align-items-center justify-content-lg-between">
             <div class="col-lg-6 mb-lg-0 mb-4">
@@ -13,3 +13,13 @@
         </div>
     </div>
 </footer>
+<style>
+    .footer {
+        background-color: #f8f9fa;
+        padding: 20px 0;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+</style>
