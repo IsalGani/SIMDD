@@ -1,25 +1,25 @@
 @extends('layouts.user_type.auth')
 
 @section('content')
-    <div class="container">
+    <div class="container bg-secondary rounded-3">
         
 <h2>Tambah Data Dana Desa</h2>
 
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
 <form action="{{ route('totals.store') }}" method="post">
     @csrf
     <div class="form-group">
         <label for="nama_desa">Nama Desa:</label>
-        <input type="text" name="nama_desa" class="form-control" required>
+        <input type="text" name="nama_desa" class="form-control" value="{{ Auth::user()->name }}" readonly>
     </div>
     <div class="form-group">
         <label for="tahun_anggaran">Tahun Anggaran:</label>
