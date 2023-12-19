@@ -6,12 +6,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\ResetController;
+use App\Http\Controllers\TotalController;
 use app\Http\Controllers\DanaDesaController;
 use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\ChangePasswordController;
-
+use App\Http\Controllers\RincianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,9 +44,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-	Route::get('inputdata', function () {
-		return view('inputdata');
-	})->name('inputdata');
+	Route::get('/totals/index', function () {
+		return view('/totals/index');
+	})->name('/totals/index');
 
 	Route::get('danadesa', function () {
 		return view('danadesa');
@@ -85,6 +86,9 @@ Route::get('/login', function () {
     return view('session/login-session');
 })->name('login');
 
+Route::resource('totals', TotalController::class);
+
+Route::resource('rincian', RincianController::class);
 
 
 
