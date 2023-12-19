@@ -6,6 +6,8 @@
 <h2>Dana Desa</h2>
 <p>Selamat Datang {{   $user->name}}!</p>
     <a href="{{ route('totals.create') }}" class="btn btn-success">Tambah Data</a>
+    <a href="{{ route('rincian.index') }}" class="btn btn-success">Rincian Data</a>
+    
     
     @if(session('success'))
         <div class="alert alert-success mt-3">{{ session('success') }}</div>

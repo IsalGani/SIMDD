@@ -4,9 +4,7 @@
 @section('content')
 <div class="container">
 <h2>Rincian Anggaran</h2>
-    <a href="{{ route('rincian.create') }}" class="btn btn-success">Tambah Rincian</a>
-    <a href="{{ route('rincian.index') }}" class="btn btn-success">Rincian Anggaran</a>
-    
+    <a href="{{ route('rincian.create') }}" class="btn btn-success">Tambah Rincian</a>    
     @if(session('success'))
         <div class="alert alert-success mt-3">{{ session('success') }}</div>
     @endif

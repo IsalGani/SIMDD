@@ -1,10 +1,13 @@
-<h2>Total Details</h2>
+@extends('layouts.user_type.auth')
+
+@section('content')
+<div class="container">
+
+
+    <h2>Total Details</h2>
 
     <table class="table mt-3">
-        <tr>
-            <th>ID</th>
-            <td>{{ $total->id }}</td>
-        </tr>
+        
         <tr>
             <th>Nama Desa</th>
             <td>{{ $total->nama_desa }}</td>
@@ -23,4 +26,8 @@
         </tr>
     </table>
 
-    <a href="{{ route('totals.index') }}" class="btn btn-primary">Back to List</a>
+    <a href="{{ route('totals.index') }}" class="btn btn-primary">Kembali</a>
+
+</div>
+    
+@endsection
