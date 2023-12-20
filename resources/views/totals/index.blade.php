@@ -2,13 +2,13 @@
 
 
 @section('content')
-<div class="container">
-<h2>Dana Desa</h2>
-<p>Selamat Datang Admin {{   $user->name}}!</p>
-    <a href="{{ route('totals.create') }}" class="btn btn-success">Tambah Data</a>
-    <a href="{{ route('rincian.create') }}" class="btn btn-success">Tambah Rincian</a>
+    <div class="container">
+        <h2>Dana Desa</h2>
+        <p>Selamat Datang Admin {{ $user->name }}!</p>
+        <a href="{{ route('totals.create') }}" class="btn btn-success">Tambah Data</a>
+        <a href="{{ route('rincian.create') }}" class="btn btn-success">Tambah Rincian</a>
 
-    @if(session('success'))
+        @if (session('success'))
             <div class="alert alert-success mt-3">{{ session('success') }}</div>
         @endif
 
@@ -17,7 +17,8 @@
                 <label for="tahun_anggaran">Pilih Tahun:</label>
                 <select name="tahun_anggaran" class="form-control" onchange="this.form.submit()">
                     @foreach ($availableYears as $year)
-                        <option value="{{ $year }}" {{ $tahun_anggaran == $year ? 'selected' : '' }}>{{ $year }}</option>
+                        <option value="{{ $year }}" {{ $tahun_anggaran == $year ? 'selected' : '' }}>
+                            {{ $year }}</option>
                     @endforeach
                 </select>
             </div>
@@ -26,7 +27,7 @@
         <table class="table mt-3 text-center">
             <thead>
                 <tr>
-                   
+
                     <th>Nama Desa</th>
                     <th>Tahun Anggaran</th>
                     <th>Total Realisasi</th>
@@ -37,7 +38,7 @@
             <tbody>
                 @forelse($totals as $total)
                     <tr>
-                       
+
                         <td>{{ $total->nama_desa }}</td>
                         <td>{{ $total->tahun_anggaran }}</td>
                         <td>{{ $total->total_realisasi }}</td>
@@ -48,7 +49,8 @@
                             <form action="{{ route('totals.destroy', $total->id) }}" method="post" style="display:inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Are you sure?')">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -59,5 +61,5 @@
                 @endforelse
             </tbody>
         </table>
-</div>
+    </div>
 @endsection
