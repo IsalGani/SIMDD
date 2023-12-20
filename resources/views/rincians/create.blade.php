@@ -15,11 +15,11 @@
     </div>
 @endif
 
-<form action="{{ route('rincian.store') }}" method="post">
+<form action="{{ route('rincians.store') }}" method="post">
     @csrf
     <div class="form-group">
         <label for="nama_desa">Nama Desa:</label>
-        <input type="text" name="nama_desa" class="form-control" required>
+        <input type="text" name="nama_desa" class="form-control" value="{{ Auth::user()->name }}" readonly>
     </div>
     <div class="form-group">
         <label for="tahun_anggaran">Tahun Anggaran:</label>

@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\TotalController;
 use App\Http\Controllers\RincianController;
-use app\Http\Controllers\DanaDesaController;
 use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
@@ -81,7 +80,7 @@ Route::resource('totals', TotalController::class);
 
 Route::get('totals/{id}/edit', 'TotalController@edit')->name('totals.edit');
 
-Route::resource('rincian', RincianController::class);
+Route::resource('rincians', RincianController::class);
 
 
 

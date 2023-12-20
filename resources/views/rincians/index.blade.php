@@ -3,15 +3,14 @@
 
 @section('content')
     <div class="container">
-        <h2>Dana Desa</h2>
-        <p>Selamat Datang Admin {{ $user->name }}!</p>
-        <a href="{{ route('totals.create') }}" class="btn btn-success">Tambah Data</a>
+        <h2>Rincian Dana Desa</h2>
 
         @if (session('success'))
             <div class="alert alert-success mt-3">{{ session('success') }}</div>
         @endif
 
-        <form action="{{ route('totals.index') }}" method="GET">
+        
+        <form action="{{ route('rincians.index') }}" method="GET">
             <div class="form-group">
                 <label for="tahun_anggaran">Pilih Tahun:</label>
                 <select name="tahun_anggaran" class="form-control" onchange="this.form.submit()">
@@ -35,17 +34,17 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($totals as $total)
+                @forelse($rincians as $rincian)
                     <tr>
 
-                        <td>{{ $total->nama_desa }}</td>
-                        <td>{{ $total->tahun_anggaran }}</td>
-                        <td>{{ $total->total_realisasi }}</td>
-                        <td>{{ $total->total_anggaran }}</td>
+                        <td>{{ $rincian->nama_desa }}</td>
+                        <td>{{ $rincian->tahun_anggaran }}</td>
+                        <td>{{ $rincian->total_realisasi }}</td>
+                        <td>{{ $rincian->total_anggaran }}</td>
                         <td>
-                            <a href="{{ route('rincians.index', $total->id) }}" class="btn btn-info btn-sm">Rincian</a>
-                            <a href="{{ route('totals.edit', $total->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('totals.destroy', $total->id) }}" method="post" style="display:inline">
+                            <a href="{{ route('rincians.create', $rincian->id) }}" class="btn btn-info btn-sm">Tambah Rincian</a>
+                            <a href="{{ route('rincians.edit', $rincian->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('rincians.destroy', $rincian->id) }}" method="post" style="display:inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm"
