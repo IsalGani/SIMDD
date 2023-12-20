@@ -11,6 +11,7 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $tahunAnggaranSaatIni = date('Y');
 
         $totalsDesa = Total::where('nama_desa', $user->name)
             ->orderBy('tahun_anggaran')
@@ -19,8 +20,10 @@ class DashboardController extends Controller
 
         $totals = Total::orderBy('tahun_anggaran')->get();
 
-        $seluruhDesa = Total::all();
-
+        $seluruhDesa = Total::where('tahun_anggaran', $tahunAnggaranSaatIni)
+        ->orderBy('tahun_anggaran')
+        ->get();
+        
         return view('dashboard', compact('totals', 'totalsDesa', 'seluruhDesa'));
     }
 }
