@@ -7,12 +7,13 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\TotalController;
+use App\Http\Controllers\RincianController;
 use app\Http\Controllers\DanaDesaController;
 use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ChangePasswordController;
-use App\Http\Controllers\RincianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +30,7 @@ use App\Http\Controllers\RincianController;
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', [HomeController::class, 'home']);
-	Route::get('dashboard', function () {
-		return view('dashboard');
-	})->name('dashboard');
-
+	Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 	Route::get('berkas', function () {
 		return view('berkas');
 	})->name('berkas');

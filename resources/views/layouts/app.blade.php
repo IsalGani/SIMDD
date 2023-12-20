@@ -46,6 +46,7 @@
   <link rel="stylesheet" href="../assets/css/soft-ui-dashboard.css">
   <link rel="stylesheet" href="app.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{{ asset('js/chart.js') }}"></script>
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
