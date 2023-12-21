@@ -12,6 +12,6 @@ class Bidang extends Model
 
     public function subBidangs()
     {
-        return $this->hasMany(SubBidang::class, 'bidang_id');
+        return $this->hasMany(SubBidang::class, 'nama_bidang');
     }
 }
