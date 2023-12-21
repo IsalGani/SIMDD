@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bidang;
 use App\Models\Total;
 use App\Models\Rincian;
+use App\Models\SubBidang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,12 +30,33 @@ class RincianController extends Controller
             ->where('tahun_anggaran', $tahun_anggaran)
             ->get();
 
-        return view('rincians.index', compact('rincians', 'tahun_anggaran', 'user', 'availableYears'));
+        $bidangs = Bidang::all();
+
+        $subBidangs = SubBidang::all();
+
+
+        return view('rincians.index', compact('rincians', 'tahun_anggaran', 'user', 'availableYears', 'bidangs', 'subBidangs'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('rincians.create');
+        $bidang = Bidang::all();
+        $user = Auth::user();
+        $availableYears = Total::where('nama_desa', $user->name)
+            ->pluck('tahun_anggaran')
+            ->unique()
+            ->sortByDesc(function ($year) {
+                return $year;
+            });
+
+        $tahun_anggaran = $request->input('tahun_anggaran', $availableYears->isNotEmpty() ? $availableYears->first() : date('Y'));
+
+
+        // Mengambil data total berdasarkan nama desa dan tahun anggaran
+        $rincians = Total::where('nama_desa', $user->name)
+            ->where('tahun_anggaran', $tahun_anggaran)
+            ->get();
+        return view('rincians.create', compact('rincians', 'tahun_anggaran', 'bidang'));
     }
 
     public function store(Request $request)

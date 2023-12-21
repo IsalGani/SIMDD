@@ -40,8 +40,8 @@
 
                         <td>{{ $total->nama_desa }}</td>
                         <td>{{ $total->tahun_anggaran }}</td>
-                        <td>{{ $total->total_realisasi }}</td>
-                        <td>{{ $total->total_anggaran }}</td>
+                        <td>Rp.{{ $total->total_realisasi }}</td>
+                        <td>Rp.{{ $total->total_anggaran }}</td>
                         <td>
                             <a href="{{ route('rincians.index', $total->id) }}" class="btn btn-info btn-sm">Rincian</a>
                             <a href="{{ route('totals.edit', $total->id) }}" class="btn btn-warning btn-sm">Edit</a>

@@ -20,5 +20,12 @@ class Total extends Model
                 ->where('tahun_anggaran', $total->tahun_anggaran)
                 ->exists();
         });
+        
+    }
+
+
+    public function subBidangs()
+    {
+        return $this->hasMany(SubBidang::class, 'tahun_anggaran', 'tahun_anggaran')->where('nama_desa', $this->nama_desa);
     }
 }
