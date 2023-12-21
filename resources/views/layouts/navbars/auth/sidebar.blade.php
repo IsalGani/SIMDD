@@ -14,7 +14,7 @@
         <a class="nav-link {{ (Request::is('dashboard') ? 'active' : '') }}" href="{{ url('dashboard') }}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <title>shop </title>
+              <title>Dashboard</title>
               <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g transform="translate(-1716.000000, -439.000000)" fill="#FFFFFF" fill-rule="nonzero">
                   <g transform="translate(1716.000000, 291.000000)">
@@ -34,10 +34,9 @@
         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Masukan Data</h6>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ (Request::is('totals') ? 'active' : '') }} " href="{{ url('totals') }}">
+        <a class="nav-link {{ (Request::is('totals', 'rincians', 'rincians?{id}', 'rincians/create?{id}') ? 'active' : '') }} " href="{{ url('totals') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                 <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <title>customer-support</title>
                     <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                         <g id="Rounded-Icons" transform="translate(-1717.000000, -291.000000)" fill="#FFFFFF" fill-rule="nonzero">
                             <g id="Icons-with-opacity" transform="translate(1716.000000, 291.000000)">
@@ -54,7 +53,6 @@
             <span class="nav-link-text ms-1">Input Dana Desa</span>
         </a>
       </li>
-      
       <li class="nav-item mt-2">
         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Lihat Data</h6>
       </li>
@@ -102,7 +100,5 @@
       
      
     </ul>
-  </div>
-  <div class="sidenav-footer mx-3 ">
   </div>
 </aside>
