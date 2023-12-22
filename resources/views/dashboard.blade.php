@@ -1,42 +1,42 @@
 @extends('layouts.user_type.auth')
 
 @section('content')
-<div class="container-fluid">
-    <div class="row mt-4">
-        <div class="col-lg-5 mb-lg-0 mb-4">
-            <div class="card z-index-2">
-                <div class="card-header mb-0">
-                    <h4 class="mb-0">{{ __('Realisasi Per Tahun') }}</h4>
-                    <p class="mb-0">Desa {{ Auth::user()->name }}</p>
-                </div>
-                <div class="card-body p-3">
-                    <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
-                        <div class="chart">
-                            <canvas id="chart1" class="chart-canvas" height="300" width="300"></canvas>
+    <div class="container-fluid">
+        <div class="row mt-4">
+            <div class="col-lg-5 mb-lg-0 mb-4">
+                <div class="card z-index-2">
+
+            
+                        <div class="card-header mb-0">
+                            <h4 class="mb-0">{{ __('Realisasi Per Tahun') }}</h4>
+                            <p class="mb-0">Desa {{ Auth::user()->name }}</p>
                         </div>
-                    </div>
-
-
+                        <div class="card-body p-3">
+                            <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
+                                <div class="chart">
+                                    <canvas id="chart1" class="chart-canvas" height="300" width="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                   
                 </div>
             </div>
-        </div>
-        <div class="col-lg">
-            <div class="card z-index-2">
-                <div class="card-header pb-0">
-                    <h4 class="mb-0">{{ __('Dana Desa Kec. Batudaa Pantai') }}</h4>
-                </div>
-                <div class="card-body p-3">
-                    <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
-                        <div class="chart">
-                            <canvas id="chart2" class="chart-canvas" height="300" width="300"></canvas>
+            <div class="col-lg">
+                <div class="card z-index-2">
+                    <div class="card-header pb-0">
+                        <h4 class="mb-0">{{ __('Dana Desa Kec. Batudaa Pantai') }}</h4>
+                    </div>
+                    <div class="card-body p-3">
+                        <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
+                            <div class="chart">
+                                <canvas id="chart2" class="chart-canvas" height="300" width="300"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-    
 @endsection
 @push('dashboard')
     <script>
