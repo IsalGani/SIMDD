@@ -6,7 +6,7 @@
          <h2>Dana Desa</h2>
         <p>Selamat Datang 
             @if(auth()->user()->role === 'admin_desa')
-            Admin 
+            Admin {{ $user->name }}!</p>
             @endif
             {{ $user->name }}!</p>
 
@@ -32,7 +32,7 @@
         </form>
         @endif
 
-        {{-- pilih nama desa untuk admin kecamatan
+        {{-- pilih nama desa untuk admin kecamatan --}}
         @if(auth()->user()->role === 'admin_kecamatan')
         <form action="{{ route('totals.index') }}" method="GET">
             <div class="form-group">
@@ -45,7 +45,7 @@
                 </select>
             </div>
         </form>
-        @endif --}}
+        @endif
 
         <table class="table mt-3 text-center">
             <thead>
@@ -86,7 +86,7 @@
                 @endif
 
 
-                {{-- tampil data untuk admin kecamatan
+                {{-- tampil data untuk admin kecamatan --}}
                 @if(auth()->user()->role === 'admin_kecamatan')
                 @forelse($totalsSeluruhDesa as $total)
                     <tr>
@@ -103,7 +103,7 @@
                         <td colspan="6" class="text-center">No records found</td>
                     </tr>
                 @endforelse
-                @endif --}}
+                @endif
             </tbody>
         </table>
     </div>

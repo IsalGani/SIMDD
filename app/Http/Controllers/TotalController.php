@@ -22,13 +22,35 @@ class TotalController extends Controller
 
         $tahun_anggaran = $request->input('tahun_anggaran', $availableYears->isNotEmpty() ? $availableYears->first() : date('Y'));
 
-
         // Mengambil data total berdasarkan nama desa dan tahun anggaran
         $totals = Total::where('nama_desa', $user->name)
             ->where('tahun_anggaran', $tahun_anggaran)
             ->get();
 
-        return view('totals.index', compact('totals', 'tahun_anggaran', 'user', 'availableYears'));
+
+
+
+
+
+            #ambil nama desa dari Total
+            $availableDesa = Total::get('nama_desa')
+            ->pluck('nama_desa')
+            ->unique()
+            ->sortByDesc(function ($desa) {
+                return $desa;
+            });
+
+            #ambil input dari halaman index
+            $nama_desa = $request->input('nama_desa', $availableDesa->isNotEmpty() ? $availableDesa->first() : date('Y'));
+
+            #tampilkan nama desa berdasarkan input dari $nama_desa
+            $totalsSeluruhDesa = Total::where('nama_desa', $nama_desa)
+            ->get();
+
+            
+
+           
+        return view('totals.index', compact('totals', 'availableDesa', 'nama_desa', 'tahun_anggaran', 'totalsSeluruhDesa', 'user', 'availableYears'));
     }
 
     public function create()

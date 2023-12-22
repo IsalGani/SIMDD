@@ -9,7 +9,7 @@
             <div class="alert alert-success mt-3">{{ session('success') }}</div>
         @endif
 
-
+        @if(auth()->user()->role === 'admin_desa')
         <form action="{{ route('rincians.index') }}" method="GET">
             <div class="form-group">
                 <label for="tahun_anggaran">Pilih Tahun:</label>
@@ -21,6 +21,7 @@
                 </select>
             </div>
         </form>
+        @endif
         <div class="card">
             <div class="card-body">
                 <table class="table mt-3 text-center">
@@ -49,18 +50,19 @@
                     </tbody>
 
                 </table>
-                <div class="d-flex justify-content-end m-2">
+                @if (auth()->user()->role === 'admin_desa')
+                    <div class="d-flex justify-content-end m-2">
 
-                    {{-- <a href="{{ route('rincians.create', $rincian->id) }}" class="btn btn-info btn-sm">Tambah Rincian</a> --}}
-                    <a href="{{ route('rincians.edit', $rincian->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                    <form action="{{ route('rincians.destroy', $rincian->id) }}" method="post" style="display:inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm"
-                            onclick="return confirm('Are you sure?')">Delete</button>
-                    </form>
-                </div>
-
+                        {{-- <a href="{{ route('rincians.create', $rincian->id) }}" class="btn btn-info btn-sm">Tambah Rincian</a> --}}
+                        <a href="{{ route('rincians.edit', $rincian->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('rincians.destroy', $rincian->id) }}" method="post" style="display:inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                    </div>
+                @endif
             </div>
         </div>
 
@@ -87,47 +89,55 @@
                                     <td>Rp.{{ $subBidangs->anggaran_bidang }}</td>
                                 </tr>
                             @empty
-
-                            <form action="{{ route('rincians.store') }}" method="post">
-                                @csrf
-                                <tr>
-                                    <td colspan="6" class="text-center">No records found</td>
-                                </tr>
-                                <tr>
-                                    <div id="subBidangContainer">
-                                        <div class="form-group subBidangRow">
-                                            <div class="row m-0">
-                                                <div class="col">
-                                                    <label for="nama_bidang">Nama Bidang:</label>
-                                                    <input type="text" name="nama_bidang[]" class="form-control" readonly value="{{$bidangs->nama_bidang}}">
+                            @if(auth()->user()->role === 'admin_desa')
+                                <form action="{{ route('rincians.store') }}" method="post">
+                                    @csrf
+                                    <tr>
+                                        <td colspan="6" class="text-center">No records found</td>
+                                    </tr>
+                                    <tr>
+                                        <div id="subBidangContainer">
+                                            <div class="form-group subBidangRow">
+                                                <div class="row m-0">
+                                                    <div class="col">
+                                                        <label for="nama_bidang">Nama Bidang:</label>
+                                                        <input type="text" name="nama_bidang[]" class="form-control"
+                                                            readonly value="{{ $bidangs->nama_bidang }}">
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="nama_sub_bidang">Nama Sub Bidang:</label>
+                                                        <input type="text" name="nama_sub_bidang[]" class="form-control"
+                                                            required>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="realisasi_bidang">Realisasi Bidang:</label>
+                                                        <input type="number" name="realisasi_bidang[]" class="form-control"
+                                                            required>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="anggaran_bidang">Anggaran Bidang:</label>
+                                                        <input type="number" name="anggaran_bidang[]" class="form-control"
+                                                            required>
+                                                    </div>
                                                 </div>
-                                                <div class="col">
-                                                    <label for="nama_sub_bidang">Nama Sub Bidang:</label>
-                                                    <input type="text" name="nama_sub_bidang[]" class="form-control" required>
-                                                </div>
-                                                <div class="col">
-                                                    <label for="realisasi_bidang">Realisasi Bidang:</label>
-                                                    <input type="number" name="realisasi_bidang[]" class="form-control" required>
-                                                </div>
-                                                <div class="col">
-                                                    <label for="anggaran_bidang">Anggaran Bidang:</label>
-                                                    <input type="number" name="anggaran_bidang[]" class="form-control" required>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-end m-2">                                               
-                                                    <button type="button" class="btn btn-success btnAddSubBidang m-1">Tambah Sub
+                                                
+                                                <div class="d-flex justify-content-end m-2">
+                                                    <button type="button"
+                                                        class="btn btn-success btnAddSubBidang m-1">Tambah Sub
                                                         Bidang</button>
-                                                                                        
-                                                    <button type="button" class="btn btn-danger btnRemoveSubBidang m-1">Remove</button>
+
+                                                    <button type="button"
+                                                        class="btn btn-danger btnRemoveSubBidang m-1">Remove</button>
                                                     <button type="submit" class="btn btn-primary m-1">Submit</button>
-    
+
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    
 
-                                </tr>
-                            </form>
+
+                                    </tr>
+                                </form>
+                                @endif
                             @endforelse
 
 
@@ -149,9 +159,9 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             // Tambahkan SubBidang Baru
-            $(".btnAddSubBidang").click(function () {
+            $(".btnAddSubBidang").click(function() {
                 var newSubBidang = $(".subBidangRow:first").clone();
                 newSubBidang.find("input").val("");
                 $("#subBidangContainer").append(newSubBidang);
@@ -159,7 +169,7 @@
             });
 
             // Hapus SubBidang
-            $("#subBidangContainer").on("click", ".btnRemoveSubBidang", function () {
+            $("#subBidangContainer").on("click", ".btnRemoveSubBidang", function() {
                 $(this).closest(".subBidangRow").remove();
             });
         });

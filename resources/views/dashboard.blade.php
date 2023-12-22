@@ -6,10 +6,12 @@
             <div class="col-lg-5 mb-lg-0 mb-4">
                 <div class="card z-index-2">
 
-            
+                        
                         <div class="card-header mb-0">
                             <h4 class="mb-0">{{ __('Realisasi Per Tahun') }}</h4>
+                            @if(auth()->user()->role === 'admin_desa')
                             <p class="mb-0">Desa {{ Auth::user()->name }}</p>
+                            @endif
                         </div>
                         <div class="card-body p-3">
                             <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
