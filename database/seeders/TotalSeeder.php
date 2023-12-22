@@ -66,7 +66,48 @@ class TotalSeeder extends Seeder
 
         Total::create([
             'nama_desa' => 'Bongo',
+            'tahun_anggaran' => '2023',
+            'total_realisasi' =>   '1000000000',
+            'total_anggaran' => '1000000000',
+        ]);
+
+        Total::create([
+            'nama_desa' => 'Kayubulan',
+            'tahun_anggaran' => '2023',
+            'total_realisasi' =>   '1000000000',
+            'total_anggaran' => '1000000000',
+        ]);
+        Total::create([
+            'nama_desa' => 'Kayubulan',
             'tahun_anggaran' => '2024',
+            'total_realisasi' =>   '1000000000',
+            'total_anggaran' => '1000000000',
+        ]);
+        Total::create([
+            'nama_desa' => 'Kayubulan',
+            'tahun_anggaran' => '2022',
+            'total_realisasi' =>   '1000000000',
+            'total_anggaran' => '1000000000',
+        ]);
+
+
+        Total::create([
+            'nama_desa' => 'Buhudaa',
+            'tahun_anggaran' => '2024',
+            'total_realisasi' =>   '1000000000',
+            'total_anggaran' => '1000000000',
+        ]);
+
+        Total::create([
+            'nama_desa' => 'Buhudaa',
+            'tahun_anggaran' => '2023',
+            'total_realisasi' =>   '1000000000',
+            'total_anggaran' => '1000000000',
+        ]);
+
+        Total::create([
+            'nama_desa' => 'Buhudaa',
+            'tahun_anggaran' => '2022',
             'total_realisasi' =>   '1000000000',
             'total_anggaran' => '1000000000',
         ]);

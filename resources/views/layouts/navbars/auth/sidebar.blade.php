@@ -38,10 +38,8 @@
                 </a>
             </li>
 
-            @if(auth()->user()->role === 'admin_desa')
-            <li class="nav-item mt-2">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Masukan Data</h6>
-            </li>
+           
+            
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('totals', 'rincians', 'rincians?{id}', 'rincians/create?{id}') ? 'active' : '' }} "
                     href="{{ url('totals') }}">
@@ -69,10 +67,10 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1">Input Dana Desa</span>
+                    <span class="nav-link-text ms-1">Dana Desa</span>
                 </a>
             </li>
-            @endif
+           
 
             <li class="nav-item mt-2">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Lihat Data</h6>
