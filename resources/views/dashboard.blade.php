@@ -6,21 +6,46 @@
             <div class="col-lg-5 mb-lg-0 mb-4">
                 <div class="card z-index-2">
 
-                        
-                        <div class="card-header mb-0">
-                            <h4 class="mb-0">{{ __('Realisasi Per Tahun') }}</h4>
-                            @if(auth()->user()->role === 'admin_desa')
+
+                    <div class="card-header mb-0">
+                        <h4 class="mb-0">{{ __('Realisasi Per Tahun') }}</h4>
+                        @if (auth()->user()->role === 'admin_desa')
                             <p class="mb-0">Desa {{ Auth::user()->name }}</p>
-                            @endif
-                        </div>
-                        <div class="card-body p-3">
+                        @endif
+                        {{-- pilih nama desa untuk admin kecamatan --}}
+                        @if (auth()->user()->role === 'admin_kecamatan')
+                            <form action="{{ route('dashboard') }}" method="GET">
+                                <div class="form-group">
+                                    <label for="nama_desa">Pilih Desa:</label>
+                                    <select name="nama_desa" class="form-control" onchange="this.form.submit()">
+                                        @foreach ($availableDesa_pertahun as $desa_pertahun)
+                                            <option value="{{ $desa_pertahun }}"
+                                                {{ $nama_desa_pertahun == $desa_pertahun ? 'selected' : '' }}>
+                                                {{ $desa_pertahun }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </form>
+                        @endif
+                    </div>
+                    <div class="card-body p-3">
+                        @if (auth()->user()->role === 'admin_kecamatan')
                             <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
                                 <div class="chart">
-                                    <canvas id="chart1" class="chart-canvas" height="300" width="300"></canvas>
+                                    <canvas id="chart_desa_pertahun" class="chart-canvas" height="300"
+                                        width="300"></canvas>
                                 </div>
                             </div>
+                        @endif
+
+                        <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
+                            <div class="chart">
+                                <canvas id="chart_desa" class="chart-canvas" height="300" width="300"></canvas>
+                            </div>
                         </div>
-                   
+                    </div>
+
+
                 </div>
             </div>
             <div class="col-lg">
@@ -29,9 +54,10 @@
                         <h4 class="mb-0">{{ __('Dana Desa Kec. Batudaa Pantai') }}</h4>
                     </div>
                     <div class="card-body p-3">
+
                         <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
                             <div class="chart">
-                                <canvas id="chart2" class="chart-canvas" height="300" width="300"></canvas>
+                                <canvas id="chart_kecamatan" class="chart-canvas" height="300" width="300"></canvas>
                             </div>
                         </div>
                     </div>
@@ -42,6 +68,7 @@
 @endsection
 @push('dashboard')
     <script>
+        // chart desa
         var realisasiData = @json($totalsDesa->pluck('total_realisasi'));
         var tahunAnggaran = @json(
             $totalsDesa->pluck('tahun_anggaran')->map(function ($year) {
@@ -49,7 +76,8 @@
             }));
         var anggaranData = @json($totalsDesa->pluck('total_anggaran'));
         window.onload = function() {
-            var ctx = document.getElementById("chart1").getContext("2d");
+
+            var ctx = document.getElementById("chart_desa").getContext("2d");
             new Chart(ctx, {
                 type: "bar",
                 data: {
@@ -117,6 +145,83 @@
             });
 
 
+            @if (auth()->user()->role === 'admin_kecamatan')
+            //chart desa pertahun/admin POV
+            var realisasiDataPertahun = @json($totalsSeluruhDesa_pertahun->pluck('total_realisasi'));
+            var tahunAnggaranPertahun = @json(
+                $totalsSeluruhDesa_pertahun->pluck('tahun_anggaran')->map(function ($desa) {
+                    return str_replace('.', '', strval($desa));
+                }));
+            var anggaranDataPertahun = @json($totalsSeluruhDesa_pertahun->pluck('total_anggaran'));
+
+            var ctx = document.getElementById("chart_desa_pertahun").getContext("2d");
+            new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: tahunAnggaranPertahun,
+                    datasets: [{
+                        label: "Total Realisasi",
+                        tension: 0.5,
+                        borderWidth: 0,
+                        borderRadius: 4,
+                        borderSkipped: false,
+                        backgroundColor: "pink",
+                        data: realisasiDataPertahun,
+                        maxBarThickness: 6
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    width: 200,
+                    height: 200,
+                    plugins: {
+                        legend: {
+                            display: true,
+                        }
+                    },
+                    interaction: {
+                        intersect: true,
+                        mode: 'index',
+                    },
+                    scales: {
+                        y: {
+                            grid: {
+                                drawBorder: true,
+                                display: true,
+                                drawOnChartArea: false,
+                                drawTicks: true,
+                            },
+                            ticks: {
+                                suggestedMin: 0,
+                                suggestedMax: 500,
+                                beginAtZero: true,
+                                padding: 15,
+                                font: {
+                                    size: 10,
+                                    family: "Open Sans",
+                                    style: 'normal',
+                                    lineHeight: 2
+                                },
+                                color: "white"
+                            },
+                        },
+                        x: {
+                            grid: {
+                                drawBorder: true,
+                                display: true,
+                                drawOnChartArea: false,
+                                drawTicks: true
+                            },
+                            ticks: {
+                                display: true
+                            },
+                        },
+                    },
+                },
+            });
+            @endif
+
 
             var realisasiAllData = @json($seluruhDesa->pluck('total_realisasi'));
             var anggaranAllData = @json($seluruhDesa->pluck('total_anggaran'));
@@ -124,7 +229,7 @@
             var namaAllData = @json($seluruhDesa->pluck('nama_desa'));
 
 
-            var ctx = document.getElementById("chart2").getContext("2d");
+            var ctx = document.getElementById("chart_kecamatan").getContext("2d");
             new Chart(ctx, {
                 type: "bar",
                 data: {
