@@ -5,8 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class rincian extends Model
+class Rincian extends Model
 {
     use HasFactory;
-    protected $fillable = ['nama_desa', 'tahun_anggaran', 'total_realisasi', 'total_anggaran'];
+
+    protected $table = 'rincian';
+    protected $fillable = ['jumlah_anggaran', 'jumlah_realisasi', 'id_sub_bidang'];
+
+    public function subBidang()
+    {
+        return $this->belongsTo(SubBidang::class, 'id_sub_bidang');
+    }
 }

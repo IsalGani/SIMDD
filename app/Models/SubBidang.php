@@ -9,10 +9,16 @@ class SubBidang extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama_sub_bidang', 'realisasi_bidang', 'anggaran_bidang', 'nama_bidang', 'tahun_anggaran'];
+    protected $table = 'sub_bidang';
+    protected $fillable = ['nama_sub_bidang', 'id_bidang'];
 
     public function bidang()
     {
-        return $this->belongsTo(Bidang::class, ['nama_bidang', 'tahun_anggaran'], ['nama_bidang', 'tahun_anggaran']);
+        return $this->belongsTo(Bidang::class, 'id_bidang');
+    }
+
+    public function rincians()
+    {
+        return $this->hasMany(Rincian::class, 'id_sub_bidang');
     }
 }
