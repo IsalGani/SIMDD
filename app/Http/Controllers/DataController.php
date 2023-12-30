@@ -2,43 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Desa;
-use App\Models\Bidang;
-use App\Models\Rincian;
-use App\Models\SubBidang;
 use Illuminate\Http\Request;
-use App\Models\TahunAnggaran;
+use Illuminate\Support\Facades\DB;
 
 class DataController extends Controller
 {
     public function index()
     {
-        // Tampilkan data untuk semua entitas
-        $desas = Desa::all();
-        $tahunAnggarans = TahunAnggaran::all();
-        $bidangs = Bidang::all();
-        $subBidangs = SubBidang::all();
-        $rincians = Rincian::all();
 
-        return view('data.index', compact('desas', 'tahunAnggarans', 'bidangs', 'subBidangs', 'rincians'));
+        $namaDesa = DB::table('desa')->find(1);
+        $tahunAnggarans = DB::table('tahun_anggaran')
+                                ->select('tahun')
+                                ->where('id_desa', 3)
+                                ->get();
+
+        return view('data.index', compact('namaDesa', 'tahunAnggarans'));
     }
 
-    // Fungsi-fungsi CRUD lainnya sesuai kebutuhan
-    // ...
-
-    // Contoh fungsi untuk menampilkan data sebuah desa
-    public function showDesa($id)
+    public function create()
     {
-        $desa = Desa::findOrFail($id);
-        return view('data.show_desa', compact('desa'));
     }
 
-    // Contoh fungsi untuk menampilkan data sebuah tahun anggaran
-    public function showTahunAnggaran($id)
+    public function store()
     {
-        $tahunAnggaran = TahunAnggaran::findOrFail($id);
-        return view('data.show_tahun_anggaran', compact('tahunAnggaran'));
     }
 
-    // dan seterusnya...
+    public function edit()
+    {
+    }
+
+    public function update()
+    {
+    }
+
+    public function destroy()
+    {
+    }
 }

@@ -55,6 +55,21 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/login', function () {
 		return view('dashboard');
 	})->name('sign-up');
+
+
+	Route::get('/data/index', function () {
+		return view('/data/index');
+	})->name('/data/index');
+	Route::get('/data/index', [DataController::class, 'index'])->name('data.index');
+	
+
+	Route::get('/data.tambah', function () {
+		return view('/data.tambah');
+	})->name('/data.tambah');
+	Route::get('/data/tambah', [DataController::class, 'tambah'])->name('data.tambah');
+	Route::post('/data/store-tahun-anggaran', [DataController::class, 'storeTahunAnggaran'])->name('data.storeTahunAnggaran');
+	Route::get('/data/create', [DataController::class, 'create'])->name('data.create');
+	Route::post('/data/create', [DataController::class, 'create'])->name('data.create');
 });
 
 
@@ -79,7 +94,7 @@ Route::get('/login', function () {
 
 Route::get('totals/{id}/edit', 'TotalController@edit')->name('totals.edit');
 
-Route::resource('data', DataController::class);
+
 
 
 

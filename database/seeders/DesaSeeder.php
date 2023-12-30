@@ -24,6 +24,27 @@ class DesaSeeder extends Seeder
             [
                 'nama_desa' => 'Buhudaa',
             ],
+            [
+                'nama_desa' => 'Lopo',
+            ],
+            [
+                'nama_desa' => 'Kayubulan',
+            ],
+            [
+                'nama_desa' => 'Biluhu Timur',
+            ],
+            [
+                'nama_desa' => 'Tontayuo',
+            ],
+            [
+                'nama_desa' => 'Langgula',
+            ],
+            [
+                'nama_desa' => 'Lamu',
+            ],
+            [
+                'nama_desa' => "limoo'o",
+            ],
             // Tambahkan data lain sesuai kebutuhan
         ]);
     }

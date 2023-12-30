@@ -32,6 +32,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="{{ asset('js/chart.js') }}"></script>
   <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 
