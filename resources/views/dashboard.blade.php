@@ -41,13 +41,14 @@
                     </div>
                 </div>
             </div>
-           
+
         </div>
         <div class="row mt-3">
             <div class="col-lg">
                 <div class="card z-index-2">
                     <div class="card-header pb-0">
                         <h4 class="mb-0">{{ __('Dana Desa Kec. Batudaa Pantai') }}</h4>
+                        <h4 class="mb-0">Tahun {{ $tahunAnggaranSaatIni }}</h4>
                     </div>
                     <div class="card-body p-3">
 
@@ -106,7 +107,7 @@
                                 font: {
                                     size: 16
                                 }
-                               
+
                             }
                         }
                     },
@@ -123,7 +124,7 @@
                                 drawTicks: true,
                             },
                             ticks: {
-                                
+
                                 suggestedMin: 0,
                                 suggestedMax: 500,
                                 beginAtZero: true,
@@ -209,7 +210,7 @@
                                 font: {
                                     size: 16
                                 }
-                               
+
                             }
                         }
                     },
@@ -226,7 +227,7 @@
                                 drawTicks: true,
                             },
                             ticks: {
-                                
+
                                 suggestedMin: 0,
                                 suggestedMax: 500,
                                 beginAtZero: true,
@@ -304,7 +305,7 @@
                                 font: {
                                     size: 16
                                 }
-                               
+
                             }
                         }
                     },
@@ -321,7 +322,7 @@
                                 drawTicks: true,
                             },
                             ticks: {
-                                
+
                                 suggestedMin: 0,
                                 suggestedMax: 500,
                                 beginAtZero: true,
@@ -409,7 +410,7 @@
                                 font: {
                                     size: 16
                                 }
-                               
+
                             }
                         }
                     },
@@ -426,7 +427,7 @@
                                 drawTicks: true,
                             },
                             ticks: {
-                                
+
                                 suggestedMin: 0,
                                 suggestedMax: 500,
                                 beginAtZero: true,

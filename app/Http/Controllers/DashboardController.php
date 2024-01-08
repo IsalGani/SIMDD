@@ -42,6 +42,6 @@ class DashboardController extends Controller
         $totalsSeluruhDesa_pertahun = Total::where('nama_desa', $nama_desa_pertahun)
         ->get();
         
-        return view('dashboard', compact('totals', 'availableDesa_pertahun', 'nama_desa_pertahun', 'totalsSeluruhDesa_pertahun', 'totalsDesa', 'seluruhDesa'));
+        return view('dashboard', compact('totals', 'availableDesa_pertahun', 'nama_desa_pertahun', 'totalsSeluruhDesa_pertahun', 'totalsDesa', 'seluruhDesa', 'tahunAnggaranSaatIni'));
     }
 }
