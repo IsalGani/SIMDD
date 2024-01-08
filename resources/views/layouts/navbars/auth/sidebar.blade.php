@@ -1,4 +1,4 @@
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-2 fixed-start ms-2 "
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 "
     id="sidenav-main">
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
@@ -38,8 +38,8 @@
                 </a>
             </li>
 
-
-
+           
+            
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('totals', 'rincians', 'rincians?{id}', 'rincians/create?{id}') ? 'active' : '' }} "
                     href="{{ url('totals') }}">
@@ -70,8 +70,8 @@
                     <span class="nav-link-text ms-1">Dana Desa</span>
                 </a>
             </li>
+           
 
-{{-- 
             <li class="nav-item mt-2">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Lihat Data</h6>
             </li>
@@ -127,7 +127,10 @@
                     </div>
                     <span class="nav-link-text ms-1">Lihat Berkas Dana Desa</span>
                 </a>
-            </li> --}}
+            </li>
+
+
+
         </ul>
     </div>
 </aside>

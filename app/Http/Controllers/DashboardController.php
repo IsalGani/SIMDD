@@ -26,7 +26,7 @@ class DashboardController extends Controller
 
 
 
-        // Untuk chart Desa Pertahun
+
         #ambil nama desa dari Total
         $availableDesa_pertahun = Total::get('nama_desa')
         ->pluck('nama_desa')
@@ -34,8 +34,10 @@ class DashboardController extends Controller
         ->sortByDesc(function ($desa_pertahun) {
             return $desa_pertahun;
         });
+
         #ambil input dari halaman index
         $nama_desa_pertahun = $request->input('nama_desa', $availableDesa_pertahun->isNotEmpty() ? $availableDesa_pertahun->first() : date('Y'));
+
         #tampilkan nama desa berdasarkan input dari $nama_desa
         $totalsSeluruhDesa_pertahun = Total::where('nama_desa', $nama_desa_pertahun)
         ->get();
