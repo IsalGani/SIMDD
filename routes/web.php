@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\TotalController;
+use App\Http\Controllers\MasterController;
 use App\Http\Controllers\RincianController;
 use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\RegisterController;
@@ -56,6 +57,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/login', function () {
 		return view('dashboard');
 	})->name('sign-up');
+
+
+
+
+	Route::get('/master/index', function () {
+		return view('/master/index');
+	})->name('/master/index');
+
+	Route::get('/master/create', function () {
+		return view('/master/create');
+	})->name('/master/create');
 });
 
 
@@ -82,7 +94,10 @@ Route::get('totals/{id}/edit', 'TotalController@edit')->name('totals.edit');
 
 Route::resource('rincians', RincianController::class);
 
+Route::get('master', 'MasterController@index')->name('master');
+route::resource('master', MasterController::class);
 
+Route::get('master/{id}/edit', [MasterController::class, 'edit'])->name('master.edit');
 
 
 

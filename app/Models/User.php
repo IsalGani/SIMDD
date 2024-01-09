@@ -31,6 +31,9 @@ class User extends Authenticatable
         'about_me',
     ];
 
+    protected $attributes = [
+        'role' => 'admin_desa', // Sesuaikan dengan nilai default yang Anda inginkan
+    ];
     /**
      * The attributes that should be hidden for serialization.
      *
